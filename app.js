@@ -9,8 +9,8 @@ app.use(bodyParser.urlencoded({ exended: true }));
 //when a get request is coming from the root
 
 app.use(session({
-  secret: 'keyboard cat',
-  cookie: {maxAge:300000}
+  secret: 'janky potato child',
+  cookie: { maxAge:300000 }
 }))
 
 app.get('/', (req, res) => {
@@ -28,7 +28,8 @@ app.post('/', (req, res) => {
   let user_id = req.body.first;
   let message = req.body.message;
   let timestamp = new Date();
-  fs.appendFile('log.txt', `${timestamp} ${user_id}:\n${message}\n\n`, (err) => {
+  let time = timestamp.getTime();
+  fs.appendFile('log.txt', `${time} ${user_id}:\n${message}\n\n`, (err) => {
     if (err) throw err;
     console.log('The "data to append" was appended to file!');
   });
